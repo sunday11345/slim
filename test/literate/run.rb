@@ -42,21 +42,14 @@ class LiterateTest
     case exp.first
     when :section
       type, title, *rest = exp
-     slim = rest.count {|exp| exp.first == :slim }
-     html = rest.count {|exp| exp.first == :html }
-     section = rest.count {|exp| exp.first == :section }
-     rest = rest.map {|exp| compile(exp) }.join("\n").gsub("\n", "\n  ")
-     if html > 0 || slim > 0
-       raise "You need exactly one slim and one html block per test case" unless html == 1 && slim == 1
-       raise "A test case cannot have subsections" if section > 0
-       "it #{title.inspect} do\n  #{rest}\n  assert_html html, slim\nend\n"
-     else
-       "describe #{title.inspect} do\n#{preamble}  #{rest}\nend\n"
-     end
+      rest = rest.map {|exp| compile(exp) }.join("\n").gsub("\n", "\n  ")
+      "describe #{title.inspect} do\n#{preamble}  #{rest}\nend\n"
     when :comment
       "# #{exp.last}"
-    when :slim, :html
-      "#{exp.first} = #{exp.last.inspect}"
+    when :slim
+      "it 'should render' do\n  slim = #{exp.last.inspect}"
+    when :html
+      "  html = #{exp.last.inspect}\n  assert_html html, slim\nend\n"
     end
   end
 

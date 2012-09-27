@@ -6,8 +6,6 @@ In this section we test all line indicators.
 
 ### Text blocks `|`
 
-#### Simple
-
 A text blocks starts with the `|` as line indicator.
 
 ~~~ slim
@@ -19,8 +17,6 @@ renders as
 ~~~ html
 Text block
 ~~~
-
-#### Multiline
 
 Multiple lines can be indented beneath the first text line.
 
@@ -45,8 +41,6 @@ renders as
   multiple
  lines
 ~~~
-
-#### First line determines indentation
 
 The first line of a text block determines the indentation.
 
@@ -76,8 +70,6 @@ lines
 
 ### Text blocks with trailing whitespace `'`
 
-#### Simple
-
 A text blocks with trailing whitespace starts with the `'` as line indicator.
 
 ~~~ slim
@@ -89,8 +81,6 @@ renders as
 ~~~ html
 Text block 
 ~~~
-
-#### Multiline
 
 Multiple lines can be indented beneath the first text line.
 
@@ -115,8 +105,6 @@ renders as
   multiple
  lines 
 ~~~
-
-#### First line determines indentation
 
 The first line of a text block determines the indentation.
 
@@ -146,8 +134,6 @@ lines
 
 ### Inline HTML `<`
 
-#### Simple
-
 HTML can be written directly.
 
 ~~~ slim
@@ -160,14 +146,13 @@ renders as
 <a href="http://slim-lang.com">slim-lang.com</a>
 ~~~
 
-#### HTML allows nesting
-
 HTML tags allow nested blocks inside.
 
 ~~~ slim
 <html>
-  head
+  <head>
     title Example
+  </head>
   body
     - if true
       | yes
@@ -183,8 +168,6 @@ renders as
 ~~~
 
 ### Control code `-`
-
-#### Simple
 
 The dash `-` denotes arbitrary control code.
 
@@ -202,8 +185,6 @@ renders as
 Hello, World!
 ~~~
 
-#### Line breaks
-
 Complex code can be broken with backslash `\`.
 
 ~~~ slim
@@ -216,13 +197,13 @@ Complex code can be broken with backslash `\`.
   = greeting
 ~~~
 
+renders as
+
 ~~~ html
 Hello, World!
 ~~~
 
 ### Dynamic output `=`
-
-#### Simple
 
 The equal sign `=` produces dynamic output.
 
@@ -230,17 +211,19 @@ The equal sign `=` produces dynamic output.
 = 7*7
 ~~~
 
+renders as
+
 ~~~ html
 49
 ~~~
-
-#### HTML escaping
 
 Dynamic output is escaped by default.
 
 ~~~ slim
 = '<script>evil();</script>'
 ~~~
+
+renders as
 
 ~~~ html
 &lt;script&gt;evil();&lt;/script&gt;

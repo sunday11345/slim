@@ -1,2 +1,4 @@
---title Slim
---files CHANGES,LICENSE
+---title Slim
+---files CHANGES,LICENSE,test/literate/TESTS.md
+--markup-provider redcarpet
+--markup markdown
